@@ -1,7 +1,6 @@
 public class PoemFormatter {
     
-    public Line
-    OfWords[] lines;
+    public LineOfWords[] lines;
     
     public PoemFormatter(String[] poem) {
         lines = new LineOfWords[poem.length];

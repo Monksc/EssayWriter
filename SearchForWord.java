@@ -22,13 +22,13 @@ public class SearchForWord {
     }
     
     private static String getDictionaryLineFromWord(String word) {
-        String fileName = "ListOf" + word.charAt(0) + "Words.txt";
+        String fileName = "../Dictionar/ListOf" + word.charAt(0) + "Words.txt";
     }
     
     private static String[] getDictionaryLinesFromWordsInDefinition(String[] words) {
         
         for (char letter: alphabet) {
-            String fileName = "ListOf" + letter + "Words.txt";
+            String fileName = "../Dictionary/ListOf" + letter + "Words.txt";
             
         }        
     }
