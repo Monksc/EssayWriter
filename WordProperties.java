@@ -1,11 +1,11 @@
-public class WordProperties() {
+public class WordProperties {
     
     public final String word;
     public final char type;
     public final String definition; 
     
     public WordProperties(String str) {
-        // checks if its just one word or its from a textfile
+        // checks if its a line from a textfile
         if (str.indexOf(" ") > 0) {
             
             // example code of whats happening
@@ -24,8 +24,8 @@ public class WordProperties() {
             
             definition = str.substring(indexOfFirstSpace + 3);
         }
-        else {
-            
+        else { // its just one word
+            this = SearchForWord.getWordPropertiesGivenWord(str);   
         }
     }
 }

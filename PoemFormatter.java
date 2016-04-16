@@ -6,7 +6,8 @@ public class PoemFormatter {
         lines = new LineOfWords[poem.length];
         
         for (int i = 0; i < poem.length; i++) {
-            lines[i] = LineOfWords(poem[i]);
+            LineOfWords newLine = new LineOfWords(poem[i]);
+            lines[i] = newLine;
         }
     }
 

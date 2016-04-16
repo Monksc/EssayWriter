@@ -4,10 +4,10 @@ public class LineOfWords {
     
     public LineOfWords(String line) {
         String[] wordsAsString = getWords(line);
-        wordsProperties = new WordProperties[wordsAsString.length];
+        words = new WordProperties[wordsAsString.length];
         
         for (int i = 0; i < wordsProperties.length; i++) {
-            wordsProperties[i] = WordProperties(wordsAsString[i]);
+            words[i] = WordProperties(wordsAsString[i]);
         }
     }
     
@@ -17,7 +17,7 @@ public class LineOfWords {
         int index = 0;
         for (int i = 0; i < r.length; i++) {
             index++;
-            int newIndex = str.indexOf(" " index);
+            int newIndex = str.indexOf(" ", index);
             String newWord = str.substring(index, newIndex);
             r[i] = newWord;
             index = newIndex;
@@ -31,7 +31,7 @@ public class LineOfWords {
         int index = 0;
         
         while (line.indexOf(" ", index) != 0) {
-            index = line.indexOf(" ", index) + 1
+            index = line.indexOf(" ", index) + 1;
             
             count++;
         }
