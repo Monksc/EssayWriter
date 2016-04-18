@@ -22,10 +22,22 @@ public class WordProperties {
             
             type = str.charAt(indexOfFirstSpace + 1); // sets type from str
             
-            definition = str.substring(indexOfFirstSpace + 3);
+            definition = str.substring(str.indexOf(" ", indexOfFirstSpace + 1) + 1);
         }
         else { // its just one word
-            this = SearchForWord.getWordPropertiesGivenWord(str);   
+            WordProperties wordProperty = SearchForWord.getWordPropertiesGivenWord(str); 
+            
+            word = wordProperty.word;
+            type = wordProperty.type;
+            definition = wordProperty.definition;
         }
     }
+    
+    @Override
+    public String toString() {
+        return "Word: |" + word + "|\n" + 
+                "Type: |" + type + "|\n" + 
+                "Definition: |" + definition + "|";
+    }
+    
 }

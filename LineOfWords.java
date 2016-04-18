@@ -6,8 +6,8 @@ public class LineOfWords {
         String[] wordsAsString = getWords(line);
         words = new WordProperties[wordsAsString.length];
         
-        for (int i = 0; i < wordsProperties.length; i++) {
-            words[i] = WordProperties(wordsAsString[i]);
+        for (int i = 0; i < words.length; i++) {
+            words[i] = new WordProperties(wordsAsString[i]);
         }
     }
     
@@ -30,12 +30,22 @@ public class LineOfWords {
         int count = 0;
         int index = 0;
         
-        while (line.indexOf(" ", index) != 0) {
+        while (line.indexOf(" ", index) != -1) {
             index = line.indexOf(" ", index) + 1;
             
             count++;
         }
         
         return count;
+    }
+    
+    @Override
+    public String toString() {
+        String str = "";
+        for (WordProperties word: words) {
+            str = str + word + " ";
+        }
+        
+        return str;
     }
 }
