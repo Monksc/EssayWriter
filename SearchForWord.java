@@ -55,7 +55,7 @@ public class SearchForWord {
             }
             
             for (int j = 0; j < word.word.length() && j < wordProperties[i].word.length(); j++) {
-                if (word.word.substring(word.word.length() - j - 1, word.word.length() - j).equals(wordProperties[i].word.substring(wordProperties[j].word.length() - j - 1, wordProperties[i].word.length() - j))) {
+                if (word.word.substring(word.word.length() - j - 1, word.word.length() - j).equals(wordProperties[i].word.substring(wordProperties[i].word.length() - j - 1, wordProperties[i].word.length() - j))) {
                     newCloseness++;
                 }
                 else {
@@ -64,8 +64,10 @@ public class SearchForWord {
             }
             
             if (newCloseness > closeNess) {
-                closeNess = newCloseness;
-                bestWord = wordProperties[i];
+                if (!wordProperties[i].word.equals(word.word)) {
+                    closeNess = newCloseness;
+                    bestWord = wordProperties[i];
+                }
             }
         }
         
@@ -73,7 +75,74 @@ public class SearchForWord {
     }
     
     public static WordProperties[] getWordPropertiesGivenType(char type) {
-        return null;
+        int amountOfType = 0;
+        
+        for (char letter: alphabet) {
+            String fileName = "ListOf" + letter + "Words.txt";
+            
+            try{
+
+                //Create object of FileReader
+                FileReader inputFile = new FileReader(fileName);
+
+                //Instantiate the BufferedReader Class
+                BufferedReader bufferReader = new BufferedReader(inputFile);
+
+                //Variable to hold the one line data
+                String line;
+
+                // Read file line by line and print on the console
+                while ((line = bufferReader.readLine()) != null)   {
+                    int index = line.indexOf(" ") + 1;
+                    if (index > 0) {
+                        if (line.substring(index).charAt(0) == type) {
+                            amountOfType++;
+                        }
+                    }
+                }
+            
+                //Close the buffer reader
+                bufferReader.close();
+            }catch(Exception e){
+                System.out.println("Error while reading file line by line:" + e.getMessage());                      
+            }
+        } 
+        
+        int count = 0;
+        WordProperties[] words = new WordProperties[amountOfType];
+        
+        for (char letter: alphabet) {
+            String fileName = "ListOf" + letter + "Words.txt";
+            
+            try{
+
+                //Create object of FileReader
+                FileReader inputFile = new FileReader(fileName);
+
+                //Instantiate the BufferedReader Class
+                BufferedReader bufferReader = new BufferedReader(inputFile);
+
+                //Variable to hold the one line data
+                String line;
+
+                // Read file line by line and print on the console
+                while ((line = bufferReader.readLine()) != null)   {
+                    int index = line.indexOf(" ") + 1;
+                    if (index > 0) {
+                        if (line.substring(index).charAt(0) == type) {
+                            words[count++] = new WordProperties(line);
+                        }
+                    }
+                }
+            
+                //Close the buffer reader
+                bufferReader.close();
+            }catch(Exception e){
+                System.out.println("Error while reading file line by line:" + e.getMessage());                      
+            }
+        } 
+        
+        return words;
     }
     
     private static String getDictionaryLineFromWord(String word) {

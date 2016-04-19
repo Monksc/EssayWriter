@@ -14,10 +14,11 @@ public class LineOfWords {
     private String[] getWords(String str) {
         String[] r = new String[howManyWords(str)];
         
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < r.length; i++) {
             index++;
             int newIndex = str.indexOf(" ", index);
+            if (newIndex == -1) newIndex = str.length();
             String newWord = str.substring(index, newIndex);
             r[i] = newWord;
             index = newIndex;
@@ -36,6 +37,10 @@ public class LineOfWords {
             count++;
         }
         
+        if (line.length() > 0) {
+            count++;
+        }
+        
         return count;
     }
     
@@ -43,7 +48,7 @@ public class LineOfWords {
     public String toString() {
         String str = "";
         for (WordProperties word: words) {
-            str = str + word + " ";
+            str = str + word + "\n";
         }
         
         return str;

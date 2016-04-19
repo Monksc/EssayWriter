@@ -3,7 +3,7 @@ public class PoemCreater {
     
     // the first String in the array is for the previous word
     // the second is for the new word
-    private ArrayList<String[]> changingWords = new ArrayList<String[]>();
+    public ArrayList<String[]> changingWords = new ArrayList<String[]>();
     
     private PoemFormatter formatter;
     
@@ -25,7 +25,7 @@ public class PoemCreater {
             
             String newLine = "";
             for (int j = 0; j < line.words.length; j++) {
-                newLine = newLine + " " + getNewWord(line.words[j]);
+                newLine = newLine + getNewWord(line.words[j]) + " ";
             }
             
             poem[i] = newLine;
@@ -43,16 +43,19 @@ public class PoemCreater {
      */
     private String getNewWord(WordProperties newWordProperties) {
         String newWord = newWordProperties.word;
-                
+        
         if (getChangingWords(newWord) != null) {
             return getChangingWords(newWord);
         }        
         
         // checks to see if newWord is lowercased
+        if (newWord.length() > 0)
         if (newWord.substring(0,1).equals(newWord.substring(0,1).toLowerCase())) {
-            if (newWordProperties.type != 't') {
+            //if (newWordProperties.type != 't') {
                 newWordProperties = SearchForWord.getBestWordPropertiesGivenWordProperties(newWordProperties);
-            }
+                String[] newChangingWords = {newWord, newWordProperties.word};
+                newWord = newWordProperties.word;
+            //}
         }
                 
         return newWord;
