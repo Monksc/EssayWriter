@@ -4,14 +4,19 @@
 import java.io.*;
 public class SearchForWord {
     
-    private static char[] alphabet = {'A','B'};//,'C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    private static char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     
     public SearchForWord () {
     
     }
     
     public static WordProperties getWordPropertiesGivenWord(String word) {
-        WordProperties wordProperty = new WordProperties(getDictionaryLineFromWord(word));
+        word = word + " ";
+        String line = getDictionaryLineFromWord(word);
+        if (line.equals(word)) {
+            return null;
+        }
+        WordProperties wordProperty = new WordProperties(line);
         return wordProperty;
     }
     
@@ -28,6 +33,10 @@ public class SearchForWord {
     
     public static WordProperties getBestWordPropertiesGivenWordProperties(WordProperties word) {
         WordProperties[] wordProperties = getWordPropertiesGivenType(word.type);
+        
+        if (wordProperties == null) {
+            return word;   
+        }
         
         // returns word if they is nothing inside of wordProperties
         if (wordProperties.length == 0) {

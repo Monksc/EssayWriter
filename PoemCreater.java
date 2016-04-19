@@ -25,7 +25,7 @@ public class PoemCreater {
             
             String newLine = "";
             for (int j = 0; j < line.words.length; j++) {
-                newLine = newLine + " " + getNewWord(line.words[i]);
+                newLine = newLine + " " + getNewWord(line.words[j]);
             }
             
             poem[i] = newLine;

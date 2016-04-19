@@ -17,6 +17,15 @@ public class MainOfPoemWriter {
         
         String[] newPoem = creater.createPoem();
         
+        printPoem(poem);
+        
+        printPoem(newPoem);
+    }
+    
+    public static void printPoem(String[] poem) {
+        for (String line: poem) {
+            System.out.println(line);
+        }
     }
     
 }

@@ -26,10 +26,16 @@ public class WordProperties {
         }
         else { // its just one word
             WordProperties wordProperty = SearchForWord.getWordPropertiesGivenWord(str); 
-            
-            word = wordProperty.word;
-            type = wordProperty.type;
-            definition = wordProperty.definition;
+            if (wordProperty == null) {
+                word = str;
+                type = ' ';
+                definition = "";
+            }
+            else {
+                word = wordProperty.word;
+                type = wordProperty.type;
+                definition = wordProperty.definition;
+            }
         }
     }
     
